@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -38,6 +38,14 @@ const styles = theme => ({
 
 function Login(props) {
     const { classes } = props
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    
+    function onSubmit(e) {
+        e.preventDefault()
+        console.log(`email: ${email}`)
+        console.log(`password: ${password}`)
+    }
 
     return (
         <main className={classes.main}>
@@ -48,14 +56,14 @@ function Login(props) {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={onSubmit}>
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="email">Email Address</InputLabel>
-                        <Input id="email" name="email" autoComplete="off" autoFocus />
+                        <Input id="email" name="email" autoComplete="off" autoFocus value={email} onChange={e => setEmail(e.target.value)}/>
                     </FormControl>
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="password">Password</InputLabel>
-                        <Input name="password" type="password" id="password" autoComplete="off" />
+                        <Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
                     </FormControl>
                     <Button
                         type="submit"

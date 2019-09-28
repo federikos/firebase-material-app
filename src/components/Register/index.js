@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -38,6 +38,18 @@ const styles = theme => ({
 
 function Register(props) {
     const { classes } = props
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [fruit, setFruit] = useState('')
+
+    function onSubmit(e) {
+        e.preventDefault()
+        console.log(`email: ${email}`)
+        console.log(`password: ${password}`)
+        console.log(`name: ${name}`)
+        console.log(`fruit: ${fruit}`)
+    }
 
     return (
         <main className={classes.main}>
@@ -48,22 +60,22 @@ function Register(props) {
                 <Typography component="h1" variant="h5">
                     Register Account
                 </Typography>
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={onSubmit}>
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="name">Name</InputLabel>
-                        <Input id="name" name="name" autoComplete="off" autoFocus />
+                        <Input id="name" name="name" autoComplete="off" autoFocus value={name} onChange={e => setName(e.target.value)} />
                     </FormControl>
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="email">Email Address</InputLabel>
-                        <Input id="email" name="email" autoComplete="off"  />
+                        <Input id="email" name="email" autoComplete="off" value={email} onChange={e => setEmail(e.target.value)} />
                     </FormControl>
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="password">Password</InputLabel>
-                        <Input name="password" type="password" id="password" autoComplete="off"  />
+                        <Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
                     </FormControl>
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="fruit">Your Favorite Fruit</InputLabel>
-                        <Input name="fruit" type="text" id="fruit" autoComplete="off" />
+                        <Input name="fruit" type="text" id="fruit" autoComplete="off" value={fruit} onChange={e => setFruit(e.target.value)} />
                     </FormControl>
 
                     <Button
