@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Paper, Avatar, Button} from '@material-ui/core'
 import VerifiedUserOutlined from '@material-ui/icons/VerifiedUserOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
     main: {
@@ -48,6 +49,8 @@ function HomePage(props) {
                     fullWidth
                     variant="outlined"
                     color="primary"
+                    component={Link}
+                    to="/register"
                     className={classes.submit}>
                     Register
                 </Button>
@@ -56,6 +59,8 @@ function HomePage(props) {
                     fullWidth
                     variant="contained"
                     color="primary"
+                    component={Link}
+                    to="/login"
                     className={classes.submit}>
                     Login
                 </Button>
@@ -64,6 +69,8 @@ function HomePage(props) {
                     fullWidth
                     variant="contained"
                     color="secondary"
+                    component={Link}
+                    to="/dashboard"
                     className={classes.submit}>
                     Dashboard
                 </Button>

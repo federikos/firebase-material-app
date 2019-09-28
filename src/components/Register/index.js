@@ -80,6 +80,8 @@ function Register(props) {
                         fullWidth
                         variant="contained"
                         color="secondary"
+                        component={Link}
+                        to="/login"
                         className={classes.submit}>
                         Go back to Login
                     </Button>
@@ -89,4 +91,4 @@ function Register(props) {
     )
 }
 
-export default withStyles(styles)(Register)
+export default withRouter(withStyles(styles)(Register))

@@ -2,6 +2,7 @@ import React from 'react'
 import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
+import { withRouter, Link } from 'react-router-dom'
 
 const styles = theme => ({
     main: {
@@ -69,6 +70,8 @@ function Login(props) {
                         fullWidth
                         variant="outlined"
                         color="secondary"
+                        component={Link}
+                        to="/register"
                         className={classes.submit}>
                         Register
                     </Button>
@@ -78,4 +81,4 @@ function Login(props) {
     )
 }
 
-export default withStyles(styles)(Login)
+export default withRouter(withStyles(styles)(Login))
