@@ -3,6 +3,7 @@ import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } fro
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link, withRouter } from 'react-router-dom'
+import firebase from '../firebase'
 
 const styles = theme => ({
     main: {
@@ -51,6 +52,22 @@ function Register(props) {
         console.log(`fruit: ${fruit}`)
     }
 
+    async function onRegister(){
+
+        try{
+            //The register in the Firebase class is running with useState data.
+            await firebase.register(name,email,password)
+            //The addFruit in the Firebase class is running with useState data.
+            await firebase.addFruit(fruit)
+
+            //If there are no errors, they are redirected to the dashboard page.
+            props.history.replace('/dashboard')
+        }catch(err){
+            //create an alert instantly error
+            alert(err.message)
+        }
+    }
+
     return (
         <main className={classes.main}>
             <Paper className={classes.paper}>
@@ -83,6 +100,7 @@ function Register(props) {
                         fullWidth
                         variant="contained"
                         color="primary"
+                        onClick={onRegister}
                         className={classes.submit}>
                         Register
                     </Button>

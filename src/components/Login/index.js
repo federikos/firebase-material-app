@@ -3,6 +3,7 @@ import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } fro
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { withRouter, Link } from 'react-router-dom'
+import firebase from '../firebase'
 
 const styles = theme => ({
     main: {
@@ -47,6 +48,18 @@ function Login(props) {
         console.log(`password: ${password}`)
     }
 
+    async function onLogin(){
+        try {
+            //The login in the Firebase class is running with useState data.
+            await firebase.login(email,password)
+
+            //If there are no errors, they are redirected to the dashboard page.
+            props.history.replace('/dashboard')
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     return (
         <main className={classes.main}>
             <Paper className={classes.paper}>
@@ -70,6 +83,7 @@ function Login(props) {
                         fullWidth
                         variant="contained"
                         color="primary"
+                        onClick={onLogin}
                         className={classes.submit}>
                         Sign in
                     </Button>
