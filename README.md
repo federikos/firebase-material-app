@@ -1,6 +1,6 @@
 This application built on Create React App, Material-UI and Firebase. It represents using of Firebase's cloud firestore and authentication features.
 
-Deployed app: (https://fir-material-app.web.app/)
+Deployed app: https://fir-material-app.web.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
