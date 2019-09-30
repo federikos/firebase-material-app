@@ -55,6 +55,24 @@ class Firebase{
           fruit:fruit
       })
     }
+
+    isInitialized(){
+      //hold until the process ends
+      return new Promise(resolve=>{
+          //firebase notifies status change
+          this.auth.onAuthStateChanged(resolve)
+      })
+  }
+  getCurrentUsername() {
+    //return displayName if user is logged in
+    return this.auth.currentUser && this.auth.currentUser.displayName
+  }
+  async getCurrentUserFruit() {
+    //Access to the fruit field in the user uid document in the pckurdu collection.
+    const fruit = await this.db.doc(`pckurdu/${this.auth.currentUser.uid}`).get()
+    //export data
+    return fruit.get('fruit')
+  }
 }
 
 export default new Firebase()
